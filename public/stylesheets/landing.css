@@ -1,0 +1,13 @@
+body {
+  background-color: #e0e0e0;
+}
+
+.mid{
+    margin-left:  40%;
+    margin-right: auto;
+    margin-top: 25%;
+    margin-bottom: 30%;
+    /*display: list-item;*/
+    width: inherit;
+   
+}

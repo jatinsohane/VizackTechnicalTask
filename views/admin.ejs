@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="/stylesheets/landing.css">-->
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script><!--this is the cdn for making browser compatible-->
+    </head>
+    <body>
+
+
+
+<div class = "mid">
+    
+<div class="ui main text container">
+    
+    <div class="ui top  raised red attached segment">
+        <div class="ui huge header">Edit User Details</div>
+        <div class="ui divided items">
+            <% users.forEach(function(user){ %>
+            <div class="item">
+                
+                
+                <div class="content">
+                    <a class="header" > <%= user.username %></a>
+                   
+                    <div class="description">
+                         <p><%- user.mobile  %></p>
+                    </div>
+                    
+                    <br>
+                    <a class="ui orange basic button" href="/admin/<%=user._id%>/edit"> Edit</a>
+                   <br>
+                   <br>
+                     
+                   <form id="delete" action="/admin/<%=user._id%>?_method=DELETE" method="POST">
+            <button class="ui red basic button">
+                Delete
+            </button>
+                    
+                </div>
+            </div>
+
+      <div>
+    
+    
+    
+   
+   
+    <!--<a href="/blogs/<">Read More</a>-->
+    
+    
+</div>
+
+
+
+<% }) %>
+        </div>
+    </div>
+    
+</div>
+
+
+
+</div>
+
+</body>
+</html>
+

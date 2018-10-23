@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="/stylesheets/landing.css">-->
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script><!--this is the cdn for making browser compatible-->
+    </head>
+    <body>
+
+
+
+<div class="page-login">
+  <div class="ui centered grid container">
+    <div class="nine wide column">
+      <div class="ui icon warning message">
+          <i class="lock icon"></i>
+          <div class="content">
+            <div class="header">
+              Edit User details
+            </div>
+            <p></p>
+          </div>
+        </div>
+      <div class="ui fluid card">
+        <div class="content">
+        <form class="ui form"  action="/admin/<%=user._id%>?_method=PUT"  method="POST">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" name="update[username]" value= "<%=user.username%>">
+          </div>
+          
+          
+           <div class="field">
+            <label>Mobile no.</label>
+            <input type="text" name="update[mobile]" value= "<%=user.mobile%>">
+          </div>
+          
+           
+          
+          
+          <input class="ui primary submit  button" type="submit">
+           <!-- <i class="unlock alternate icon"></i>     labeled icon-->
+            <!--Sign up-->
+          <!--</button>-->
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>
