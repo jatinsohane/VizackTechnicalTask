@@ -3,6 +3,7 @@ var express =     require("express"),
     bodyParser = require("body-parser"),
     mongoose       =  require("mongoose"),
     User           = require("./models/user.js"),
+    Time           = require("./models/time.js"),
     methodOverride =  require("method-override"),
     passport       =  require("passport"),
     LocalStrategy  =                require("passport-local"),
@@ -10,10 +11,11 @@ var express =     require("express"),
     
     
     
+     app.locals.moment = require('moment');
     
     
         
- mongoose.connect("mongodb://localhost/vizack_db");
+ mongoose.connect("mongodb://localhost/att_db");
  app.use(bodyParser.urlencoded({ extended:true }));//line mandatory for using body parser and using post request
     
     
@@ -40,6 +42,7 @@ app.use(passport.session());
  passport.deserializeUser(User.deserializeUser());
  app.use(function(req,res,next){//we are passimg a middleware here so that we can apply show and hide logic of signup and login button of navbar 
     res.locals.currentUser= req.user;//res.locals is a inbuilt method of passport which will allow use to use req.user object(here) as a middleware,here we are passing current user to every single template
+     
      //  res.locals.error    = req.flash("error");//res.locals will allow us to use res.locals.message method in all other templates(ejs) 
      //  res.locals.success    = req.flash("success");
       next();
@@ -52,7 +55,30 @@ app.get("/",function(req,res){
 })
 
 app.get("/welcome",function(req, res) {
-    res.render("welcome");
+    Time.find({},function(err,found){
+        if(err){
+            console.log(err)
+        }
+        else{
+            res.render("welcome",{found:found});
+        }
+    })
+    
+})
+
+app.post("/welcome",function(req, res) {
+    var lunch_time_in=req.body.startTime;
+    
+    Time.create(lunch_time_in,function(err,newlyCreated){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(lunch_time_in);
+            res.redirect("/welcome");
+        }
+    })
+    
 })
 
 app.get("/admin",function(req, res) {
@@ -154,7 +180,8 @@ app.post("/login",isAdmin,passport.authenticate("local",{
     successRedirect:"/welcome",
     failureRedirect:"/login"
 }),function(req, res) {
-    res.send("this is the login post route");
+    
+    
 });
 
 
@@ -179,7 +206,14 @@ function isAdmin(req,res,next){
       
         
    }
-
+   
+//   function time(req,res,next){
+//      var start = Date.now();
+//     res.on('header', function() {
+//         var duration = Date.now() - start;
+//         console.log(duration);
+//     });
+// }
 app.listen(process.env.PORT,process.env.IP,function(){
    console.log("Basic Node App server has started")
 });

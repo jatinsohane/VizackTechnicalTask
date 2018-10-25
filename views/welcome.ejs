@@ -1,4 +1,4 @@
-<h1>Welcome
+<h1>Welcome</h1>
 
 
 <em><strong><%=currentUser.username%> </strong></em>
@@ -6,7 +6,39 @@
 <p>Mobile number-  <em><strong><%=currentUser.mobile%> </strong></em>
 
 
-</p>
 
-</h1>
+<br>
+
+<form action="/welcome" method="POST">
+    
+    <select>
+     <option value="">lunch out</option>
+     <option value="">lunch in</option>
+ 
+    </select>
+     <input type="submit">
+</form>
+   
+<p><strong>
+    
+    lunch at..
+     <strong><%= moment(found.createdAt) %></strong>
+</strong></p>
+
+</div>
+
+
+<br>
+
+
+ <a href="/logout">
+               <i class="sign-out "></i>
+               Logout
+            </a>
+           
+
+
+
+
+
 
